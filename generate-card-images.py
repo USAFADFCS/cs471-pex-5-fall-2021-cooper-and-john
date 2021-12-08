@@ -402,6 +402,8 @@ def generate_random_scene(name, image_output_dir, labels_output_dir, scale, reso
     # render image
     output_image_file_name = image_output_dir + name + ".jpg"
     image_width, image_height = render_scene(output_image_file_name, resolution)
+    image_width *= resolution
+    image_height *= resolution
     
     # save labels
     output_label_file_name = labels_output_dir + name + ".txt"
@@ -411,8 +413,9 @@ def generate_random_scene(name, image_output_dir, labels_output_dir, scale, reso
             pass
 
         class_index = classes.index(bounding_box["class"])
-        x_center = (bounding_box["x"] + bounding_box["w"] / 2) / image_width
-        y_center = (bounding_box["y"] + bounding_box["h"] / 2) / image_height
+        #print((image_width, image_height))
+        x_center = (bounding_box["x"] + (bounding_box["w"] / 2)) / image_width
+        y_center = (bounding_box["y"] + (bounding_box["h"] / 2)) / image_height
         width = bounding_box["w"] / image_width
         height = bounding_box["h"] / image_height
         label_str += f"{class_index} {x_center} {y_center} {width} {height}\n"

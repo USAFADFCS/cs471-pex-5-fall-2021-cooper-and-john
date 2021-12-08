@@ -54,5 +54,5 @@ names:
 
 nc: 52
 
-train: "cs471-pex-5-fall-2021-cooper-and-john/model-data/train/images"
-val: "cs471-pex-5-fall-2021-cooper-and-john/model-data/train/images"
+train: "model-data/train/images"
+val: "model-data/train/images"
